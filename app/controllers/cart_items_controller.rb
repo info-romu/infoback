@@ -1,20 +1,19 @@
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: %i[ show update destroy ]
-  before_action :authenticate_user!
 
 
   # GET /cart_items
   def index
     @cart_items = CartItem.all
-
-    render json: @cart_items
+    
+    render json: @cart_items.to_json(include: { item: { only: [:name, :description, :price, :imageUrl] } })
   end
 
   # GET /cart_items/1
   def show
 
     if @cart_item.cart.user == current_user
-      render json: @cart_item.to_json(include: { item: { only: [:name, :description, :price] } })
+      render json: @cart_item.to_json(include: { item: { only: [:name, :description, :price, :imageUrl] } })
     else
       render json: { error: 'Vous n\'avez pas la permission d\'accéder à ce cart_item' }, status: :unauthorized
     end
