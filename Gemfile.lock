@@ -85,6 +85,8 @@ GEM
     devise-jwt (0.11.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.8)
+    dockerfile-rails (1.5.8)
+      rails
     dry-auto_inject (1.0.1)
       dry-core (~> 1.0)
       zeitwerk (~> 2.6)
@@ -177,6 +179,11 @@ GEM
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    sentry-rails (5.11.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.11.0)
+    sentry-ruby (5.11.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     stringio (3.0.8)
     table_print (1.5.7)
     thor (1.2.2)
@@ -203,10 +210,13 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   devise-jwt (~> 0.11.0)
+  dockerfile-rails (>= 1.5)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors (~> 2.0)
   rails (~> 7.0.8)
+  sentry-rails (~> 5.11)
+  sentry-ruby (~> 5.11)
   table_print (~> 1.5)
   tzinfo-data
 
