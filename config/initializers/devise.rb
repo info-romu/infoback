@@ -17,6 +17,7 @@ Devise.setup do |config|
   # config.secret_key = 'e184197f4c1f29db1b54f6a94ba6b475edf24b319c0aa70622027eb53be1c2878c057f8fa54a97fd0373ca26a8b6525b25cfb1d95b0f1c7699438198fbd09231'
   config.jwt do |jwt|
 		jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+    jwt.expiration_time = 24 * 3600 # 24 hours
 	end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
