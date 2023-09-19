@@ -46,6 +46,12 @@ class CartItemsController < ApplicationController
   # DELETE /cart_items/1
   def destroy
     @cart_item.destroy
+    if current_user
+      @cart_items = current_user.cart.cart_items.includes(:item)
+      render json: @cart_items.as_json(include: { item: { only: [:name, :description, :price, :imageUrl] } })
+    else
+      render json: { error: 'Vous devez être connecté pour accéder à votre panier' }, status: :unauthorized
+    end
   end
 
   private
