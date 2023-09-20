@@ -18,9 +18,4 @@ Rails.application.routes.draw do
   scope controller: :checkout do
     get 'api/payment/status', action: :payment_status
   end
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

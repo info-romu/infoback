@@ -1,4 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def create # methode qui cree un stripe id a la creation de l'user 
+    super 
+    resource.create_on_stripe if resource.persisted?
+  end
+
   respond_to :json
    def sign_up_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)

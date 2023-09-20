@@ -67,4 +67,7 @@ User.create(
     quantity: 2
   )
 
+
+
 puts "Seed data generated successfully!"
+

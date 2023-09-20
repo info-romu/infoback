@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	# Il faut ajouter les deux modules commençant par jwt
+	before_validation :create_on_stripe, on: :create
   after_create :create_cart
 	devise :database_authenticatable, :registerable,
 	:jwt_authenticatable,
@@ -8,12 +8,22 @@ class User < ApplicationRecord
   has_one :cart
   has_many :cart_items, through: :cart
 
+  validates :stripe_id, presence: true
   validates :email, presence: true 
   validates :password, presence: true
   validates :username, presence: true
   validate :password_complexity
 
+
+
   private
+
+  def create_on_stripe
+    params = { email: email, name: username } 
+    response = Stripe::Customer.create(params)
+    self.stripe_id = response.id
+  end
+  
 
   def password_complexity
     unless password =~ /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=_-]).{8,}$/;

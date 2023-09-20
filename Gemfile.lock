@@ -223,7 +223,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   sentry-rails (~> 5.11)
   sentry-ruby (~> 5.11)
-  stripe
+  stripe (~> 9.3)
   table_print (~> 1.5)
   tzinfo-data
 
