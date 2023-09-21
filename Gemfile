@@ -51,6 +51,9 @@ gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.11.0"
 gem "rack-cors", "~> 2.0"
 
+gem "stripe"
+gem "dotenv-rails"
+
 gem "table_print", "~> 1.5"
 
 gem "dockerfile-rails", ">= 1.5", :group => :development
