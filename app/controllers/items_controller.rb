@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :check_admin_access, only: %i[create update destroy]
 
   # GET /items
   def index
@@ -18,7 +20,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      render json: @item, status: :created, location: @item
+      @items = Item.all
+      render json: { item: @item, items: @items }, status: :created, location: @Item
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -36,6 +39,8 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   def destroy
     @item.destroy
+    @items = Item.all
+    render json: @items
   end
 
   private
@@ -48,4 +53,11 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:name, :description, :price, :imageUrl)
     end
+
+    def check_admin_access
+      unless current_user && current_user.is_admin
+        render json: { error: 'Vous n\'avez pas la permission d\'effectuer cette action' }, status: :unauthorized
+      end
+    end
+
 end
