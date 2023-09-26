@@ -43,7 +43,9 @@ class CartsController < ApplicationController
 
   def success
     puts "SUCCESS !"
-    
+    @total_price = calculate_cart_items(current_user)
+    UserMailer.purchase_confirmation(current_user, current_user.cart_items, @total_price).deliver_now
+
     current_user.cart_items.each do |current_item|
       current_user.ordered_items.create(
         item: current_item.item.name,

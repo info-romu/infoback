@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <h1>Confirmation d'achat</h1>
+  <p>Merci <%= @user.username %> pour votre achat !</p>
+  <p>Voici les articles que vous avez achetés :</p>
+  <ul>
+    <% @items.each do |item| %>
+      <li><%= item.item %></li>
+    <% end %>
+  </ul>
+  <p>Le montant total de votre achat est de <%= @total_price %> EUR.</p>
+  <p>Merci de nous avoir choisis !</p>
+</body>
+</html>

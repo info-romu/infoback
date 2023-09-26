@@ -9,6 +9,7 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
   get '/profile/:id', to: 'profile#show', as: 'profile'
+  post '/send_purchase_confirmation', to: 'user_mailer#purchase_confirmation'
 
   scope controller: :carts do
     post 'create_stripe_session', action: :create_stripe_session
