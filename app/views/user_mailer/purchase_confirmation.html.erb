@@ -1,0 +1,23 @@
+<% css_file_path = Rails.root.join('app', 'assets', 'stylesheets', 'purchase_confirmation.css') %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    <%= File.read(css_file_path) %>
+  </style>
+</head>
+<body>
+  <h1>Confirmation d'achat</h1>
+  <p>Merci <span><%= @user.username %></span> pour votre achat chez Inforomu !</p>
+  <p>Voici les articles que vous avez achetés :</p>
+  <ul>
+    <% @items.each do |item| %>
+      <li><%= item.item.name %></li>
+    <% end %>
+  </ul>
+  <p>Le montant total de votre achat est de <span><%= (BigDecimal(@total_price.sum { |item| item[:price_data][:unit_amount] }) / 100).to_f %> EUR.</span></p>
+  <p>Merci de votre commande et nous restons a votre service !</p>
+</body>
+</html>
