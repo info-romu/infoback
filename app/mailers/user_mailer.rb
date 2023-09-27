@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 
     def registration_confirmation(user)
         @user = user
-        mail(to@user.email, subject: "Bienvenue chez Inforomu !")
+        mail(to: @user.email, subject: "Bienvenue chez Inforomu !")
     end
 
 
@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
         @user = user
         @items = item
         @total_price = total_price
-        mail(to: @user.email, subject: 'Confiramtion d\'achat ')
+        mail(to: @user.email, subject: 'Confirmation d\'achat ')
         puts "mail okokokokok"
     end
 end

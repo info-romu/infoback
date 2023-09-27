@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       message: 'Signed up sucessfully.',
       user: current_user
     }, status: :ok
+    UserMailer.registration_confirmation(current_user).deliver_now
   end
 
   def register_failed

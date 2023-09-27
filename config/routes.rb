@@ -10,6 +10,7 @@ Rails.application.routes.draw do
              }
   get '/profile/:id', to: 'profile#show', as: 'profile'
   post '/send_purchase_confirmation', to: 'user_mailer#purchase_confirmation'
+  post '/send_email', to: 'contact#send_email'
 
   scope controller: :carts do
     post 'create_stripe_session', action: :create_stripe_session
@@ -20,4 +21,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

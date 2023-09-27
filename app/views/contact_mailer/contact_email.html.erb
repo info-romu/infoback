@@ -1,0 +1,23 @@
+<% css_file_path = Rails.root.join('app', 'assets', 'stylesheets', 'contact_email.css') %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Demande de devis</title>
+  <style>
+    <%= File.read(css_file_path) %>
+  </style>
+</head>
+<body>
+  <h1>Nouvelle demande de devis</h1>
+  <p><span>Nom et prenom du client:</span> <%= @name %></p>
+  <p><span>Nom de l'entreprise:</span> <%= @company_name %></p>
+  <p><span>Numero de telephone:</span> <%= @phone_number %></p>
+  <p><span>Email du client:</span> <%= @from_email%></p>
+  <p><span>Type de compteur:</span> <%= @counter_type %></p>
+  <p><span>Message :</span></p>
+  <p><%= @message %></p>
+  <p>Merci de répondre à cette demande rapidement.</p>
+</body>
+</html>

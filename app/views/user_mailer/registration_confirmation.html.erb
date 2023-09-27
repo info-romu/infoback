@@ -1,0 +1,19 @@
+<% css_file_path = Rails.root.join('app', 'assets', 'stylesheets', 'registration_confirmation.css') %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    <%= File.read(css_file_path) %>
+  </style>
+</head>
+<body>
+<div class="email-content">
+  <h1>Bienvenue chez Inforomu, <span><%= @user.username %></span></h1>
+  <p>Votre enregistrement est confirmé. Vous pouvez mettre à jour vos informations, retrouvez vos commandes et vos devis depuis le site Inforomu.</p>
+  <p>A trés bientôt!</p>
+  <a href="#" class="button">Retourner sur le site inforomu</a>
+</div>
+</body>
+</html>
